@@ -37,5 +37,6 @@ CREATE TABLE employee (
   PRIMARY KEY (id)
 );
 
-SELECT * FROM top5000;
-select * from top_albums;
+SELECT * FROM department;
+SELECT * FROM role;
+SELECT * FROM employee;
