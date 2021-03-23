@@ -99,70 +99,91 @@ function viewE() {
 function addD() {
   inquirer
     .prompt({
-      name: "song",
+      name: "addD",
       type: "input",
-      message: "What song would you like to look for?",
+      message: "New department?",
     })
     .then(function (answer) {
-      console.log(answer.song);
       connection.query(
-        "SELECT * FROM top5000 WHERE ?",
-        { song: answer.song },
+        "INSERT INTO department (name) VALUES (?)",
+        answer.addD,
         function (err, res) {
-          console.log(
-            "Position: " +
-              res[0].position +
-              " || Song: " +
-              res[0].song +
-              " || Artist: " +
-              res[0].artist +
-              " || Year: " +
-              res[0].year
-          );
+          if (err) throw err;
+          console.log(res);
           runSearch();
         }
       );
     });
 }
 
-function songAndAlbumSearch() {
+function addR() {
   inquirer
-    .prompt({
-      name: "artist",
-      type: "input",
-      message: "What artist would you like to search for?",
-    })
+    .prompt([
+      {
+        name: "title",
+        type: "input",
+        message: "What is the title of the new role?",
+      },
+      {
+        name: "salary",
+        type: "input",
+        message: "What is the salary of the new role?",
+      },
+      {
+        name: "department_id",
+        type: "input",
+        message: "What is the department ID of the new role?",
+      },
+    ])
     .then(function (answer) {
-      var query =
-        "SELECT top_albums.year, top_albums.album, top_albums.position, top5000.song, top5000.artist ";
-      query +=
-        "FROM top_albums INNER JOIN top5000 ON (top_albums.artist = top5000.artist AND top_albums.year ";
-      query +=
-        "= top5000.year) WHERE (top_albums.artist = ? AND top5000.artist = ?) ORDER BY top_albums.year, top_albums.position";
-
       connection.query(
-        query,
-        [answer.artist, answer.artist],
+        "INSERT INTO role (title, salary, department_id) VALUES (?, ?, ?)",
+        [answer.title, answer.salary, answer.department_id],
         function (err, res) {
-          console.log(res.length + " matches found!");
-          for (var i = 0; i < res.length; i++) {
-            console.log(
-              i +
-                1 +
-                ".) " +
-                "Year: " +
-                res[i].year +
-                " Album Position: " +
-                res[i].position +
-                " || Artist: " +
-                res[i].artist +
-                " || Song: " +
-                res[i].song +
-                " || Album: " +
-                res[i].album
-            );
-          }
+          if (err) throw err;
+          console.log(res);
+          runSearch();
+        }
+      );
+    });
+}
 
+function addE() {
+  inquirer
+    .prompt([
+      {
+        name: "first_name",
+        type: "input",
+        message: "First name?",
+      },
+      {
+        name: "last_name",
+        type: "input",
+        message: "Last name?",
+      },
+      {
+        name: "role_id",
+        type: "input",
+        message: "Role ID?",
+      },
+      {
+        name: "manager_id",
+        type: "input",
+        message: "Manager ID?",
+      },
+    ])
+    .then(function (answer) {
+      connection.query(
+        "INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?)",
+        [
+          answer.first_name,
+          answer.last_name,
+          answer.role_id,
+          answer.manager_id,
+        ],
+        function (err, res) {
+          if (err) throw err;
+          console.log(res);
           runSearch();
         }
       );
