@@ -18,16 +18,10 @@ connection.connect(function (err) {
 function runSearch() {
   inquirer
     .prompt({
-      name: "action",
-      type: "rawlist",
-      message: "What would you like to do?",
-      choices: [
-        "Find songs by artist",
-        "Find all artists who appear more than once",
-        "Find data within a specific range",
-        "Search for a specific song",
-        "Find artists with a top song and top album in the same year",
-      ],
+      name: "employeedb",
+      type: "list",
+      message: "Please Select an option:",
+      choices: ["ADD", "VIEW", "UPDATE", "EXIT"],
     })
     .then(function (answer) {
       switch (answer.action) {
@@ -57,9 +51,9 @@ function runSearch() {
 function artistSearch() {
   inquirer
     .prompt({
-      name: "artist",
+      name: "department",
       type: "input",
-      message: "What artist would you like to search for?",
+      message: "Please select what you would like to add?",
     })
     .then(function (answer) {
       var query = "SELECT position, song, year FROM top5000 WHERE ?";

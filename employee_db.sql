@@ -11,6 +11,21 @@ CREATE TABLE department (
   PRIMARY KEY (id)
 );
 
+INSERT INTO department (name)
+VALUES ("Sales");
+
+INSERT INTO department (name)
+VALUES ("HR");
+
+INSERT INTO department (name)
+VALUES ("Accounting");
+
+INSERT INTO department (name)
+VALUES ("Marketing");
+
+INSERT INTO department (name)
+VALUES ("Legal");
+
 CREATE TABLE role (
     -- id - INT PRIMARY KEY
     -- title -  VARCHAR(30) to hold role title
@@ -22,6 +37,51 @@ CREATE TABLE role (
   department_id INT NOT NULL,
   PRIMARY KEY (id)
 );
+
+INSERT INTO role (title, salary, department_id)
+VALUES ("Sales Representative", 45000, 1);
+
+INSERT INTO role (title, salary, department_id)
+VALUES ("Regional Sales Director", 100000, 1);
+
+INSERT INTO role (title, salary, department_id)
+VALUES ("Sales Manager Commercial", 72000, 1);
+
+INSERT INTO role (title, salary, department_id)
+VALUES ("Sr. HR Business Partner", 95000, 2);
+
+INSERT INTO role (title, salary, department_id)
+VALUES ("Human Resources Assistant", 31000, 2);
+
+INSERT INTO role (title, salary, department_id)
+VALUES ("Human Resource Coordinator", 55000, 2);
+
+INSERT INTO role (title, salary, department_id)
+VALUES ("Junior Accountant", 68000, 3);
+
+INSERT INTO role (title, salary, department_id)
+VALUES ("Senior Accountant", 94000, 3);
+
+INSERT INTO role (title, salary, department_id)
+VALUES ("Director-Financial Reporting and Accounting", 157000, 3);
+
+INSERT INTO role (title, salary, department_id)
+VALUES ("Marketing Coordinator", 54000, 4);
+
+INSERT INTO role (title, salary, department_id)
+VALUES ("Product Marketing Manager",120000, 4);
+
+INSERT INTO role (title, salary, department_id)
+VALUES ("Director of Marketing", 222000, 4);
+
+INSERT INTO role (title, salary, department_id)
+VALUES ("Senior Contract Attorney", 140000, 5);
+
+INSERT INTO role (title, salary, department_id)
+VALUES ("Paralegal",66000, 5);
+
+INSERT INTO role (title, salary, department_id)
+VALUES ("Attorney", 120000, 5);
 
 CREATE TABLE employee (
 --     id - INT PRIMARY KEY
@@ -36,6 +96,10 @@ CREATE TABLE employee (
   manager_id INT
   PRIMARY KEY (id)
 );
+INSERT INTO employee (first_name, last_name, role_id, manager_id)
+VALUES ("Natalia", "Carvajal", "",1);
+
+
 
 SELECT * FROM department;
 SELECT * FROM role;
