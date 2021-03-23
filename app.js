@@ -1,6 +1,7 @@
 var mysql = require("mysql");
 var inquirer = require("inquirer");
-require("dotenv").config();
+const dotenv = require("dotenv").config();
+const cTable = require("console.table");
 
 var connection = mysql.createConnection({
   host: "localhost",
@@ -21,28 +22,49 @@ function runSearch() {
       name: "employeedb",
       type: "list",
       message: "Please Select an option:",
-      choices: ["ADD", "VIEW", "UPDATE", "EXIT"],
+      choices: [
+        "View Departments",
+        "View Roles",
+        "View Employees",
+        "Add Departments",
+        "Add Roles",
+        "Add Employees",
+        "Update Employees Roles",
+        "Exit",
+      ],
     })
     .then(function (answer) {
       switch (answer.action) {
-        case "Find songs by artist":
-          artistSearch();
+        case "View Departments":
+          viewD();
           break;
 
-        case "Find all artists who appear more than once":
-          multiSearch();
+        case "View Roles":
+          viewR();
           break;
 
-        case "Find data within a specific range":
-          rangeSearch();
+        case "View Employees":
+          viewE();
           break;
 
-        case "Search for a specific song":
-          songSearch();
+        case "Add Departments":
+          addD();
           break;
 
-        case "Find artists with a top song and top album in the same year":
-          songAndAlbumSearch();
+        case "Add Roles":
+          addR();
+          break;
+
+        case "Add Employee":
+          addE();
+          break;
+
+        case "Update Employees Roles":
+          updateER();
+          break;
+
+        case "Exit":
+          exit();
           break;
       }
     });
