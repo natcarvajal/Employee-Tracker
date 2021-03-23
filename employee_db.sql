@@ -69,7 +69,7 @@ INSERT INTO role (title, salary, department_id)
 VALUES ("Marketing Coordinator", 54000, 4);
 
 INSERT INTO role (title, salary, department_id)
-VALUES ("Product Marketing Manager",120000, 4);
+VALUES ("Product Marketing Manager", 120000, 4);
 
 INSERT INTO role (title, salary, department_id)
 VALUES ("Director of Marketing", 222000, 4);
@@ -78,7 +78,7 @@ INSERT INTO role (title, salary, department_id)
 VALUES ("Senior Contract Attorney", 140000, 5);
 
 INSERT INTO role (title, salary, department_id)
-VALUES ("Paralegal",66000, 5);
+VALUES ("Paralegal", 66000, 5);
 
 INSERT INTO role (title, salary, department_id)
 VALUES ("Attorney", 120000, 5);
@@ -97,8 +97,18 @@ CREATE TABLE employee (
   PRIMARY KEY (id)
 );
 INSERT INTO employee (first_name, last_name, role_id, manager_id)
-VALUES ("Natalia", "Carvajal", "",1);
-
+VALUES ("Natalia", "Carvajal", 1 , null);
+("Jose", "Smith", 3 , null);
+("Baxter", "Doll", 4 , null);
+("Lenny", "Vaz", 2 , null);
+("Magnolia", "Arteaga", 3 , null);
+("Olga", "Fuent", 3 , null);
+("Al", "Cox", 1 , null);
+("Jesse", "Borbee", 2 , null);
+("Cassandra", "Lexington", 2 , null);
+("Alexa", "Duglous", 4 , null);
+("Michael", "Honey", 5 , null);
+("Sarah", "Dook", 5 , null);
 
 
 SELECT * FROM department;
