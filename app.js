@@ -34,7 +34,7 @@ function runSearch() {
       ],
     })
     .then(function (answer) {
-      switch (answer.action) {
+      switch (answer.employeedb) {
         case "View Departments":
           viewD();
           break;
@@ -70,32 +70,38 @@ function runSearch() {
     });
 }
 
-function artistSearch() {
-  inquirer
-    .prompt({
-      name: "department",
-      type: "input",
-      message: "Please select what you would like to add?",
-    })
-    .then(function (answer) {
-      var query = "SELECT position, song, year FROM top5000 WHERE ?";
-      connection.query(query, { artist: answer.artist }, function (err, res) {
-        for (var i = 0; i < res.length; i++) {
-          console.log(
-            "Position: " +
-              res[i].position +
-              " || Song: " +
-              res[i].song +
-              " || Year: " +
-              res[i].year
-          );
-        }
-        runSearch();
-      });
-    });
+function viewD() {
+  console.log("Viewing all departments..");
+  connection.query("SELECT * FROM department", function (err, res) {
+    if (err) throw err;
+    console.table(res);
+    runSearch();
+  });
 }
+// inquirer
+//   .prompt({
+//     name: "View Department",
+//     type: "input",
+//     message: "Please select what you would like to add?",
+//   })
+//   .then(function (answer) {
+//     var query = "SELECT position, song, year FROM top5000 WHERE ?";
+//     connection.query(query, { artist: answer.artist }, function (err, res) {
+//       for (var i = 0; i < res.length; i++) {
+//         console.log(
+//           "Position: " +
+//             res[i].position +
+//             " || Song: " +
+//             res[i].song +
+//             " || Year: " +
+//             res[i].year
+//         );
+//       }
+//       runSearch();
+//     });
+//   });
 
-function multiSearch() {
+function viewR() {
   var query = "SELECT artist FROM top5000 GROUP BY artist HAVING count(*) > 1";
   connection.query(query, function (err, res) {
     for (var i = 0; i < res.length; i++) {
@@ -105,7 +111,7 @@ function multiSearch() {
   });
 }
 
-function rangeSearch() {
+function viewE() {
   inquirer
     .prompt([
       {
