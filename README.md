@@ -17,8 +17,7 @@ node app.js
 
 ## Images 
 
-![GitHub Logo](/images/logo.png)<br>
-![GitHub Logo](/images/logo.png)
+![GitHub Logo](/employee_track.png)
 
 ## Questions
 
