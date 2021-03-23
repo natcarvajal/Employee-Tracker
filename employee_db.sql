@@ -63,7 +63,7 @@ INSERT INTO role (title, salary, department_id)
 VALUES ("Senior Accountant", 94000, 3);
 
 INSERT INTO role (title, salary, department_id)
-VALUES ("Director-Financial Reporting and Accounting", 157000, 3);
+VALUES ("Financial Director", 157000, 3);
 
 INSERT INTO role (title, salary, department_id)
 VALUES ("Marketing Coordinator", 54000, 4);
@@ -93,23 +93,22 @@ CREATE TABLE employee (
   first_name VARCHAR(30) NOT NULL,
   last_name VARCHAR (30) NOT NULL,
   role_id INT NOT NULL,
-  manager_id INT
+  manager_id INT,
   PRIMARY KEY (id)
 );
 INSERT INTO employee (first_name, last_name, role_id, manager_id)
-VALUES ("Natalia", "Carvajal", 1 , null);
-("Jose", "Smith", 3 , null);
-("Baxter", "Doll", 4 , null);
-("Lenny", "Vaz", 2 , null);
-("Magnolia", "Arteaga", 3 , null);
-("Olga", "Fuent", 3 , null);
-("Al", "Cox", 1 , null);
-("Jesse", "Borbee", 2 , null);
-("Cassandra", "Lexington", 2 , null);
-("Alexa", "Duglous", 4 , null);
-("Michael", "Honey", 5 , null);
+VALUES ("Natalia", "Carvajal", 1 , null),
+("Jose", "Smith", 3, null),
+("Baxter", "Doll", 4 , null),
+("Lenny", "Vaz", 2 , null),
+("Magnolia", "Arteaga", 3 , null),
+("Olga", "Fuent", 3 , null),
+("Al", "Cox", 1 , null),
+("Jesse", "Borbee", 2 , null),
+("Cassandra", "Lexington", 2 , null),
+("Alexa", "Duglous", 4 , null),
+("Michael", "Honey", 5 , null),
 ("Sarah", "Dook", 5 , null);
-
 
 SELECT * FROM department;
 SELECT * FROM role;
