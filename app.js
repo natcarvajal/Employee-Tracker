@@ -2,6 +2,7 @@ var mysql = require("mysql");
 var inquirer = require("inquirer");
 const dotenv = require("dotenv").config();
 const cTable = require("console.table");
+let roles = [];
 
 var connection = mysql.createConnection({
   host: "localhost",
@@ -28,7 +29,7 @@ function runSearch() {
         "View Employees",
         "Add Departments",
         "Add Roles",
-        "Add Employees",
+        "Add Employee",
         "Update Employees Roles",
         "Exit",
       ],
@@ -61,10 +62,6 @@ function runSearch() {
 
         case "Update Employees Roles":
           updateER();
-          break;
-
-        case "Exit":
-          exit();
           break;
       }
     });
@@ -188,4 +185,53 @@ function addE() {
         }
       );
     });
+}
+
+function updateER() {
+  let employees = [];
+  connection.query("SELECT * FROM employee ", function (err, res) {
+    if (err) throw err;
+    console.log(res);
+    for (i = 0; i < res.length; i++) {
+      employees.push(res[i].first_name);
+    }
+    console.log(employees);
+    inquirer
+      .prompt([
+        {
+          name: "employee",
+          type: "list",
+          message: "Please Select an option:",
+          choices: employees,
+        },
+      ])
+      .then(function (employee) {
+        connection.query("SELECT * FROM role", function (err, res) {
+          if (err) throw err;
+          console.table(res);
+          for (i = 0; i < res.length; i++) {
+            roles.push(res[i].title);
+          }
+          inquirer
+            .prompt([
+              {
+                name: "role",
+                type: "list",
+                message: "Please Select an role:",
+                choices: roles,
+              },
+            ])
+            .then(function (answer) {
+              let index = roles.indexOf(answer.role) + 1;
+              console.log(index);
+              connection.query(
+                `UPDATE employee SET role_id = ${index} WHERE first_name = "${employee.employee}"`,
+                function (err, res) {
+                  runSearch();
+                }
+              );
+            });
+        });
+      });
+  });
 }
